@@ -6,7 +6,6 @@
   "ignorePatterns": ["/*", "!/src"],
   "extends": [
     "plugin:react/recommended",
-    "standard-with-typescript",
     "plugin:import/typescript",
     "plugin:react-hooks/recommended"
   ],
@@ -18,10 +17,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "react-hooks"],
-  "rules": {
-    "@typescript-eslint/triple-slash-reference": "off",
-    "@typescript-eslint/space-before-function-paren": "off"
-  },
+  "rules": {},
   "settings": {
     "react": {
       "version": "detect"
