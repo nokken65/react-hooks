@@ -1,0 +1,5 @@
+{
+  "extends": "@nokken65/ts-config/vite",
+  "include": ["vite.config.ts", "vitest.config.ts", "scripts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,12 @@
+next-env.d.ts
+.next
+.vercel
+.vscode
+*.d.ts
+
+dist
+build
+lib
+
+*-lock.yaml
+*-lock.json

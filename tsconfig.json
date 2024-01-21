@@ -1,0 +1,18 @@
+{
+  "extends": ["@nokken65/ts-config/react"],
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "removeComments": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "types": ["node", "vitest/globals"]
+  }
+}
