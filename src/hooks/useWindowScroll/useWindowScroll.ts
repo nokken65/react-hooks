@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { id } from '@/utils'
+
 type Coords = { x: number; y: number }
 
 type ScrollToOptions = {
@@ -8,17 +10,15 @@ type ScrollToOptions = {
   behavior?: ScrollBehavior
 }
 
-type XSelector = (x: Coords['x']) => Coords['x']
-type YSelector = (y: Coords['y']) => Coords['y']
+type Selector = (value: Coords[keyof Coords]) => Coords[keyof Coords]
 
 type UseWindowScrollConfig = {
-  xSelector?: XSelector
-  ySelector?: YSelector
+  xSelector?: Selector
+  ySelector?: Selector
 }
 
 const useWindowScroll = (config?: UseWindowScrollConfig) => {
-  const { xSelector = (x: number) => x, ySelector = (y: number) => y } =
-    config ?? {}
+  const { xSelector = id, ySelector = id } = config ?? {}
 
   const x = React.useSyncExternalStore(subscribe, () =>
     getScrollXSnapshot(xSelector)
@@ -38,11 +38,11 @@ const useWindowScroll = (config?: UseWindowScrollConfig) => {
   return [{ x, y }, scrollTo] as const
 }
 
-function getScrollXSnapshot(selector: XSelector) {
+function getScrollXSnapshot(selector: Selector) {
   return selector(window.scrollX)
 }
 
-function getScrollYSnapshot(selector: YSelector) {
+function getScrollYSnapshot(selector: Selector) {
   return selector(window.scrollY)
 }
 
