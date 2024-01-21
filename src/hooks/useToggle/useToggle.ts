@@ -17,13 +17,7 @@ import React from 'react'
  * const [value, toggle, setValue] = useToggle();
  * ```
  */
-const useToggle = (
-  initialValue: boolean = false
-): readonly [
-  boolean,
-  VoidFunction,
-  React.Dispatch<React.SetStateAction<boolean>>
-] => {
+const useToggle = (initialValue: boolean = false) => {
   const [value, setValue] = React.useState(initialValue)
 
   const toggle = React.useCallback(() => {
