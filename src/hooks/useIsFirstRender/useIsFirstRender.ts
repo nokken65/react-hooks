@@ -11,7 +11,7 @@ import React from 'react'
  * const isFirstRender = useIsFirstRender();
  * ```
  */
-const useIsFirstRender = (): boolean => {
+const useIsFirstRender = () => {
   const isFirst = React.useRef(true)
 
   if (isFirst.current) {
