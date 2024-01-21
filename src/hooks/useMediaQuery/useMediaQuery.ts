@@ -16,7 +16,7 @@ type MediaQuery = string
  * const isMatch = useMediaQuery("(max-width: 1024px)");
  * ```
  */
-const useMediaQuery = (query: MediaQuery): boolean => {
+const useMediaQuery = (query: MediaQuery) => {
   const subscribeMediaQuery = React.useCallback(
     (listener: VoidFunction) => subscribe(listener, query),
     [query]
@@ -31,11 +31,11 @@ const useMediaQuery = (query: MediaQuery): boolean => {
   return matches
 }
 
-function getSnapshot(query: MediaQuery): boolean {
+function getSnapshot(query: MediaQuery) {
   return window.matchMedia(query).matches
 }
 
-function getServerSnapshot(): false {
+function getServerSnapshot() {
   if (typeof window === 'undefined') {
     throw Error('useMediaQuery is a client-only hook')
   }
@@ -43,14 +43,12 @@ function getServerSnapshot(): false {
   return false
 }
 
-function subscribe(listener: VoidFunction, query: MediaQuery): VoidFunction {
+function subscribe(listener: VoidFunction, query: MediaQuery) {
   const mediaQueryList = window.matchMedia(query)
 
   mediaQueryList.addEventListener('change', listener)
 
-  return () => {
-    mediaQueryList.removeEventListener('change', listener)
-  }
+  return () => mediaQueryList.removeEventListener('change', listener)
 }
 
 export { useMediaQuery }
